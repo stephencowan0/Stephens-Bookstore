@@ -3,7 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include "functions.hpp"
+#include "Book.hpp"
 using namespace std;
 
 Book::Book(string new_title, string new_author, int new_book_id, int new_length, float new_rating, int new_quantity)
