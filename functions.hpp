@@ -18,3 +18,4 @@ vector<Book> lowest_rating(vector<Book> inventory);
 vector<Book> highest_rating(vector<Book> inventory);
 vector<Book> lowest_quantity(vector<Book> inventory);
 vector<Book> highest_quantity(vector<Book> inventory);
+vector<Book> find_by_title(vector<Book> inventory, string title);

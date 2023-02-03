@@ -26,6 +26,7 @@ int main()
     cout << "H: Find the book(s) with the highest rating" << endl;
     cout << "F: Find the book(s) with the lowest quantity in stock" << endl;
     cout << "M: Find the book(s) with the highest quantity in stock" << endl;
+    cout << "T: Find book by title" << endl;
 
     cout << "Q: Quit and close the program" << endl;
     while (command != 'Q')
@@ -90,6 +91,25 @@ int main()
                 }
                 break;
             }
+            case 'T':
+            {
+                string title;
+                cout << "What is the title of the book you are looking for: ";
+                getline(cin, title);
+                vector<Book> Books = find_by_title(inventory, title);
+                if (Books.size() == 0)
+                {
+                    cout << "No books were found with the title: " << title << endl;
+                }
+                else
+                {
+                    for (int i = 0; i < Books.size(); i++)
+                    {
+                        cout << "Found the following book(s):" << endl;
+                        Books[i].display_book_information();
+                    }
+                }
+            }
             case 'Q':
                 break;
             default:
@@ -100,5 +120,8 @@ int main()
     }
 
     cout << "Goodbye!" << endl;
+
+    string keep_open;
+    cin >> keep_open;
     return 0;
 }

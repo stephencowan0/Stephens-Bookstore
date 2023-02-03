@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <vector>
-#include <fstream>
-#include <sstream>
+#include <bits/stdc++.h>
 #include "functions.hpp"
 using namespace std;
 
@@ -88,4 +88,31 @@ vector<Book> highest_quantity(vector<Book> inventory)
         }
     }
     return most;
+}
+
+vector<Book> find_by_title(vector<Book> inventory, string title)
+{
+    // Remove whitespace from title
+    int l = title.length();
+    int c = count(title.begin(), title.end(), ' ');
+    remove(title.begin(), title.end(), ' ');
+    title.resize(l - c);
+    // Make all characters lowercase
+
+    vector<Book> Books;
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        string current_title = inventory[i].return_title();
+        // Remove whitespace from title
+        int l = current_title.length();
+        int c = count(current_title.begin(), current_title.end(), ' ');
+        remove(current_title.begin(), current_title.end(), ' ');
+        current_title.resize(l - c);
+
+        if (current_title == title)
+        {
+            Books.push_back(inventory[i]);
+        }
+    }
+    return Books;
 }
