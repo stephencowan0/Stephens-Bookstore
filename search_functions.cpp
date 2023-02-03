@@ -98,7 +98,7 @@ vector<Book> find_by_title(vector<Book> inventory, string title)
     remove(title.begin(), title.end(), ' ');
     title.resize(l - c);
     // Make all characters lowercase
-
+    transform(title.begin(), title.end(), title.begin(), ::tolower);
     vector<Book> Books;
     for (int i = 0; i < inventory.size(); i++)
     {
@@ -108,6 +108,8 @@ vector<Book> find_by_title(vector<Book> inventory, string title)
         int c = count(current_title.begin(), current_title.end(), ' ');
         remove(current_title.begin(), current_title.end(), ' ');
         current_title.resize(l - c);
+        // Make all characters lowercase
+        transform(current_title.begin(), current_title.end(), current_title.begin(), ::tolower);
 
         if (current_title == title)
         {
