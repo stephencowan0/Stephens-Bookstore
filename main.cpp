@@ -27,6 +27,7 @@ int main()
     cout << "F: Find the book(s) with the lowest quantity in stock" << endl;
     cout << "M: Find the book(s) with the highest quantity in stock" << endl;
     cout << "T: Find book by title" << endl;
+    cout << "A: Find book(s) by author" << endl;
 
     cout << "Q: Quit and close the program" << endl;
     while (command != 'Q')
@@ -100,6 +101,25 @@ int main()
                 if (Books.size() == 0)
                 {
                     cout << "No books were found with the title: " << title << endl;
+                }
+                else
+                {
+                    for (int i = 0; i < Books.size(); i++)
+                    {
+                        cout << "Found the following book(s):" << endl;
+                        Books[i].display_book_information();
+                    }
+                }
+            }
+            case 'A':
+            {
+                string author;
+                cout << "What author would you like to search for: ";
+                getline(cin, author);
+                vector<Book> Books = find_by_author(inventory, author);
+                if (Books.size() == 0)
+                {
+                    cout << "No books were found by author: " << author << endl;
                 }
                 else
                 {

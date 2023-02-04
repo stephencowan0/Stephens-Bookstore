@@ -118,3 +118,32 @@ vector<Book> find_by_title(vector<Book> inventory, string title)
     }
     return Books;
 }
+
+vector<Book> find_by_author(vector<Book> inventory, string author)
+{
+    // Remove whitespace from author
+    int l = author.length();
+    int c = count(author.begin(), author.end(), ' ');
+    remove(author.begin(), author.end(), ' ');
+    author.resize(l - c);
+    // Make all characters lowercase
+    transform(author.begin(), author.end(), author.begin(), ::tolower);
+    vector<Book> Books;
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        string current_author = inventory[i].return_author();
+        // Remove whitespace from author
+        int l = current_author.length();
+        int c = count(current_author.begin(), current_author.end(), ' ');
+        remove(current_author.begin(), current_author.end(), ' ');
+        current_author.resize(l - c);
+        // Make all characters lowercase
+        transform(current_author.begin(), current_author.end(), current_author.begin(), ::tolower);
+
+        if (current_author == author)
+        {
+            Books.push_back(inventory[i]);
+        }
+    }
+    return Books;
+}
