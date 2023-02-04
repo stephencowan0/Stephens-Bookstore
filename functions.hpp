@@ -21,4 +21,6 @@ vector<Book> highest_quantity(vector<Book> inventory);
 vector<Book> find_by_title(vector<Book> inventory, string title);
 vector<Book> find_by_author(vector<Book> inventory, string author);
 vector<Book> find_by_BookID(vector<Book> inventory, int bookID);
+vector<Book> find_by_length(vector<Book> inventory, int length, char type);
 vector<Book> find_by_rating(vector<Book> inventory, float rating, char type);
+vector<Book> find_by_quantity(vector<Book> inventory, int quantity, char type);

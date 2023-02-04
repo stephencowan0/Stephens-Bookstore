@@ -161,6 +161,36 @@ vector<Book> find_by_BookID(vector<Book> inventory, int bookID)
     return Books;
 }
 
+vector<Book> find_by_length(vector<Book> inventory, int length, char type)
+{
+    vector<Book> Books;
+    if (type == 'G')
+    {
+        for (int i = 0; i < inventory.size(); i++)
+        {
+            if (inventory[i].return_length() >= length)
+            {
+                Books.push_back(inventory[i]);
+            }
+        }
+    }
+    else if (type == 'L')
+    {
+        for (int i = 0; i < inventory.size(); i++)
+        {
+            if (inventory[i].return_length() <= length)
+            {
+                Books.push_back(inventory[i]);
+            }
+        }
+    }
+    else
+    {
+        cout << "YOU BROKE IT!!! YOUR BROKE MY PROGRAM!!!! WHAT HAVE YOU DONE??????????" << endl;
+    }
+    return Books;
+}
+
 vector<Book> find_by_rating(vector<Book> inventory, float rating, char type)
 {
     vector<Book> Books;
@@ -179,6 +209,36 @@ vector<Book> find_by_rating(vector<Book> inventory, float rating, char type)
         for (int i = 0; i < inventory.size(); i++)
         {
             if (inventory[i].return_rating() <= rating)
+            {
+                Books.push_back(inventory[i]);
+            }
+        }
+    }
+    else
+    {
+        cout << "YOU BROKE IT!!! YOUR BROKE MY PROGRAM!!!! WHAT HAVE YOU DONE??????????" << endl;
+    }
+    return Books;
+}
+
+vector<Book> find_by_quantity(vector<Book> inventory, int quantity, char type)
+{
+    vector<Book> Books;
+    if (type == 'G')
+    {
+        for (int i = 0; i < inventory.size(); i++)
+        {
+            if (inventory[i].return_quantity() >= quantity)
+            {
+                Books.push_back(inventory[i]);
+            }
+        }
+    }
+    else if (type == 'L')
+    {
+        for (int i = 0; i < inventory.size(); i++)
+        {
+            if (inventory[i].return_quantity() <= quantity)
             {
                 Books.push_back(inventory[i]);
             }
