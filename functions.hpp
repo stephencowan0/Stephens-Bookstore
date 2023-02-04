@@ -20,3 +20,4 @@ vector<Book> lowest_quantity(vector<Book> inventory);
 vector<Book> highest_quantity(vector<Book> inventory);
 vector<Book> find_by_title(vector<Book> inventory, string title);
 vector<Book> find_by_author(vector<Book> inventory, string author);
+vector<Book> find_by_BookID(vector<Book> inventory, int bookID);

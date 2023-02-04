@@ -26,6 +26,8 @@ Book add_book_from_input()
         cin.ignore(256, '\n');
         cin >> book_id;
     }
+    cin.clear();
+    cin.ignore(256, '\n');
 
     int length;
     cout << "Number of Pages: ";
@@ -37,6 +39,8 @@ Book add_book_from_input()
         cin.ignore(256, '\n');
         cin >> length;
     }
+    cin.clear();
+    cin.ignore(256, '\n');
 
     float rating;
     bool valid_rating = false;
@@ -60,6 +64,8 @@ Book add_book_from_input()
             cout << "Invalid rating. Please enter a number between 0 and 10: ";
         }
     }
+    cin.clear();
+    cin.ignore(256, '\n');
 
     int quantity;
     cout << "Quantity in Stock: ";
@@ -71,6 +77,9 @@ Book add_book_from_input()
         cin.ignore(256, '\n');
         cin >> quantity;
     }
+    cin.clear();
+    cin.ignore(256, '\n');
+
     ofstream myfile;
     myfile.open("current_inventory.csv", ios_base::app);
     myfile << title << "," << author << "," << book_id << "," << length << "," << rating << "," << quantity << endl;

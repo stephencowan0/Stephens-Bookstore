@@ -28,6 +28,7 @@ int main()
     cout << "M: Find the book(s) with the highest quantity in stock" << endl;
     cout << "T: Find book by title" << endl;
     cout << "A: Find book(s) by author" << endl;
+    cout << "I: Find book by ID number" << endl;
 
     cout << "Q: Quit and close the program" << endl;
     while (command != 'Q')
@@ -120,6 +121,34 @@ int main()
                 if (Books.size() == 0)
                 {
                     cout << "No books were found by author: " << author << endl;
+                }
+                else
+                {
+                    for (int i = 0; i < Books.size(); i++)
+                    {
+                        cout << "Found the following book(s):" << endl;
+                        Books[i].display_book_information();
+                    }
+                }
+            }
+            case 'I':
+            {
+                int BookID;
+                cout << "What is the ID Number of the book you would like to search for: ";
+                cin >> BookID;
+                while (cin.fail())
+                {
+                    cout << "That is not a number! Please enter a valid book ID number: ";
+                    cin.clear();
+                    cin.ignore(256, '\n');
+                    cin >> BookID;
+                }
+                cin.clear();
+                cin.ignore(256, '\n');
+                vector<Book> Books = find_by_BookID(inventory, BookID);
+                if (Books.size() == 0)
+                {
+                    cout << "No books were found with an ID of: " << BookID << endl;
                 }
                 else
                 {

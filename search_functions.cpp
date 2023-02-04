@@ -147,3 +147,16 @@ vector<Book> find_by_author(vector<Book> inventory, string author)
     }
     return Books;
 }
+
+vector<Book> find_by_BookID(vector<Book> inventory, int bookID)
+{
+    vector<Book> Books;
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        if (inventory[i].return_bookid() == bookID)
+        {
+            Books.push_back(inventory[i]);
+        }
+    }
+    return Books;
+}
