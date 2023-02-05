@@ -5,7 +5,9 @@
 #include <sstream>
 #include "Book.hpp"
 using namespace std;
-
+Book::Book()
+{
+}
 Book::Book(string new_title, string new_author, int new_book_id, int new_length, float new_rating, int new_quantity)
 {
     title = new_title;
@@ -48,8 +50,20 @@ void Book::display_book_information()
     cout << "Average Rating: " << rating << endl;
     cout << "Quantity In Stock: " << quantity << endl;
 }
-void Book::update_quantity(int change)
+void Book::update_quantity()
 {
+    cout << "Enter the quantity of books that you would like to change this books stock by: ";
+    int change;
+    cin >> change;
+    while (cin.fail())
+    {
+        cout << "That is not a number! Please enter a valid number of books to change quantity in stock by: ";
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> change;
+    }
+    cin.clear();
+    cin.ignore(256, '\n');
     quantity = quantity + change;
     cout << title << " now has an in-stock quantity of: " << quantity << endl;
 }

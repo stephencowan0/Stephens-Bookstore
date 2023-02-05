@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-    vector<Book> inventory;
+    static vector<Book> inventory;
     vector<string> rows_of_data = read_data();
     for (int i = 0; i < rows_of_data.size(); i++)
     {
@@ -139,12 +139,13 @@ int main()
             case 'I':
             {
                 cout << "What is the ID Number of the book you would like to search for: ";
-                vector<Book> Books = find_by_BookID(inventory);
-                for (int i = 0; i < Books.size(); i++)
+                Book Books = *find_by_BookID(inventory);
+                if (Books.return_title() != "")
                 {
-                    cout << "Found the following book(s):" << endl;
-                    Books[i].display_book_information();
+                    cout << "Found the following book:" << endl;
+                    Books.display_book_information();
                 }
+
                 break;
             }
             case 'P':
@@ -316,6 +317,9 @@ int main()
             case 'S':
             {
                 cout << "Enter the ID Number of the book that you would like to find and update inventory quantity for: ";
+                Book Books = *find_by_BookID(inventory);
+                cout << "The following book was found: " << endl;
+                Books.display_book_information();
                 break;
             }
             case 'Q':

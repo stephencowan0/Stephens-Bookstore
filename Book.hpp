@@ -17,6 +17,7 @@ private:
     int quantity;
 
 public:
+    Book();
     Book(string new_title, string new_author, int new_book_id, int new_length, float new_rating, int new_quantity);
     string return_title();
     string return_author();
@@ -25,6 +26,6 @@ public:
     float return_rating();
     int return_quantity();
     void display_book_information();
-    void update_quantity(int change);
+    void update_quantity();
     void update_rating(float change);
 };

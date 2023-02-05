@@ -11,10 +11,20 @@ Book add_book_from_input()
     string title;
     cout << "Title: ";
     getline(cin, title);
+    while (title == "")
+    {
+        cout << "Title: ";
+        getline(cin, title);
+    }
 
     string author;
     cout << "Author: ";
     getline(cin, author);
+    while (author == "")
+    {
+        cout << "Author: ";
+        getline(cin, author);
+    }
 
     int book_id;
     cout << "ID Number: ";
