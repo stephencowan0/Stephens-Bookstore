@@ -12,6 +12,7 @@ Book create_classes(string string_of_data);
 
 // Inventory Management Functions
 Book add_book_from_input();
+void rewrite_inventory_file(vector<Book> inventory);
 
 // Search Functions
 vector<Book> lowest_rating(vector<Book> inventory);

@@ -90,11 +90,23 @@ Book add_book_from_input()
     cin.clear();
     cin.ignore(256, '\n');
 
-    ofstream myfile;
-    myfile.open("current_inventory.csv", ios_base::app);
-    myfile << title << "," << author << "," << book_id << "," << length << "," << rating << "," << quantity << endl;
-    myfile.close();
-
     Book new_book = Book(title, author, book_id, length, rating, quantity);
     return new_book;
+}
+
+void rewrite_inventory_file(vector<Book> inventory)
+{
+    ofstream myfile;
+    myfile.open("current_inventory.csv", ios_base::trunc);
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        myfile << inventory[i].return_title() << ",";
+        myfile << inventory[i].return_author() << ",";
+        myfile << inventory[i].return_bookid() << ",";
+        myfile << inventory[i].return_length() << ",";
+        myfile << inventory[i].return_rating() << ",";
+        myfile << inventory[i].return_quantity() << endl;
+    }
+    myfile.close();
+    cout << "Update complete! Currenty inventory state saved to file." << endl;
 }

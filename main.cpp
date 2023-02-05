@@ -34,6 +34,7 @@ int main()
     cout << "#: Find books by quantity in stock" << endl;
     cout << "S: Update quantity in stock for a book" << endl;
     cout << "!: Update rating for a book" << endl;
+    cout << "~: Save changes made to inventory to file" << endl;
     cout << "Q: Quit and close the program" << endl;
 
     while (command != 'Q')
@@ -339,8 +340,36 @@ int main()
                 }
                 break;
             }
-            case 'Q':
+            case '~':
+            {
+                rewrite_inventory_file(inventory);
                 break;
+            }
+            case 'Q':
+            {
+                cout << "You are about to exit the program. Would you like to save before exiting? Type Y to save, type N to exit without saving: ";
+                bool exit_okay = false;
+                string user_input;
+                while (exit_okay == false)
+                {
+                    getline(cin, user_input);
+                    if (user_input == "Y")
+                    {
+                        rewrite_inventory_file(inventory);
+                        exit_okay = true;
+                    }
+                    else if (user_input == "N")
+                    {
+                        exit_okay = true;
+                    }
+                    else
+                    {
+                        cout << "Invalid input! Type Y to save, type N to exit without saving: ";
+                    }
+                }
+                break;
+            }
+
             default:
                 cout << "Invalid command input, please try again using one of the listed commands." << endl;
                 break;
