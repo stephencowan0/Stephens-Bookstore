@@ -48,3 +48,13 @@ void Book::display_book_information()
     cout << "Average Rating: " << rating << endl;
     cout << "Quantity In Stock: " << quantity << endl;
 }
+void Book::update_quantity(int change)
+{
+    quantity = quantity + change;
+    cout << title << " now has an in-stock quantity of: " << quantity << endl;
+}
+void Book::update_rating(float change)
+{
+    rating = rating + change;
+    cout << title << " now has a rating of: " << rating << endl;
+}

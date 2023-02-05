@@ -148,15 +148,30 @@ vector<Book> find_by_author(vector<Book> inventory, string author)
     return Books;
 }
 
-vector<Book> find_by_BookID(vector<Book> inventory, int bookID)
+vector<Book> find_by_BookID(vector<Book> inventory)
 {
+    int BookID;
+    cin >> BookID;
+    while (cin.fail())
+    {
+        cout << "That is not a number! Please enter a valid book ID number: ";
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> BookID;
+    }
+    cin.clear();
+    cin.ignore(256, '\n');
     vector<Book> Books;
     for (int i = 0; i < inventory.size(); i++)
     {
-        if (inventory[i].return_bookid() == bookID)
+        if (inventory[i].return_bookid() == BookID)
         {
             Books.push_back(inventory[i]);
         }
+    }
+    if (Books.size() == 0)
+    {
+        cout << "No books were found with an ID of: " << BookID << endl;
     }
     return Books;
 }

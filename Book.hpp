@@ -25,4 +25,6 @@ public:
     float return_rating();
     int return_quantity();
     void display_book_information();
+    void update_quantity(int change);
+    void update_rating(float change);
 };
