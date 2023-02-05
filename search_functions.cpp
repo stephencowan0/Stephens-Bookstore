@@ -148,7 +148,7 @@ vector<Book> find_by_author(vector<Book> inventory, string author)
     return Books;
 }
 
-Book *find_by_BookID(vector<Book> inventory)
+int find_by_BookID(vector<Book> inventory)
 {
     int BookID;
     cin >> BookID;
@@ -165,12 +165,11 @@ Book *find_by_BookID(vector<Book> inventory)
     {
         if (inventory[i].return_bookid() == BookID)
         {
-            return &inventory[i];
+            return i;
         }
     }
     cout << "No book was found with an ID Number of: " << BookID << endl;
-    static Book nothing = Book();
-    return &nothing;
+    return -1;
 }
 
 vector<Book> find_by_length(vector<Book> inventory, int length, char type)

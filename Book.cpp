@@ -67,8 +67,32 @@ void Book::update_quantity()
     quantity = quantity + change;
     cout << title << " now has an in-stock quantity of: " << quantity << endl;
 }
-void Book::update_rating(float change)
+void Book::update_rating()
 {
-    rating = rating + change;
+    float new_rating;
+    bool valid_rating = false;
+    while (valid_rating == false)
+    {
+        cout << "What would you like the new rating for this book to be: ";
+        cin >> new_rating;
+        while (cin.fail())
+        {
+            cout << "That is not a number! Please enter a number between 0 and 10: ";
+            cin.clear();
+            cin.ignore(256, '\n');
+            cin >> new_rating;
+        }
+        if (new_rating <= 10 && new_rating >= 0)
+        {
+            valid_rating = true;
+        }
+        else
+        {
+            cout << "Invalid rating. Please enter a number between 0 and 10: ";
+        }
+    }
+    cin.clear();
+    cin.ignore(256, '\n');
+    rating = new_rating;
     cout << title << " now has a rating of: " << rating << endl;
 }

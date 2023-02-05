@@ -32,6 +32,8 @@ int main()
     cout << "P: Find books by length (pages count)" << endl;
     cout << "R: Find books by rating" << endl;
     cout << "#: Find books by quantity in stock" << endl;
+    cout << "S: Update quantity in stock for a book" << endl;
+    cout << "!: Update rating for a book" << endl;
     cout << "Q: Quit and close the program" << endl;
 
     while (command != 'Q')
@@ -139,13 +141,12 @@ int main()
             case 'I':
             {
                 cout << "What is the ID Number of the book you would like to search for: ";
-                Book Books = *find_by_BookID(inventory);
-                if (Books.return_title() != "")
+                int index = find_by_BookID(inventory);
+                if (index != -1)
                 {
                     cout << "Found the following book:" << endl;
-                    Books.display_book_information();
+                    inventory[index].display_book_information();
                 }
-
                 break;
             }
             case 'P':
@@ -317,9 +318,25 @@ int main()
             case 'S':
             {
                 cout << "Enter the ID Number of the book that you would like to find and update inventory quantity for: ";
-                Book Books = *find_by_BookID(inventory);
-                cout << "The following book was found: " << endl;
-                Books.display_book_information();
+                int index = find_by_BookID(inventory);
+                if (index != -1)
+                {
+                    cout << "The following book was found: " << endl;
+                    inventory[index].display_book_information();
+                    inventory[index].update_quantity();
+                }
+                break;
+            }
+            case '!':
+            {
+                cout << "Enter the ID Number of the book that you would like to find and update rating for: ";
+                int index = find_by_BookID(inventory);
+                if (index != -1)
+                {
+                    cout << "The following book was found: " << endl;
+                    inventory[index].display_book_information();
+                    inventory[index].update_rating();
+                }
                 break;
             }
             case 'Q':
