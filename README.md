@@ -4,10 +4,12 @@ g++ main.cpp initialization.cpp inventory_management.cpp Book.cpp search_functio
 
 ./bookstore
 
+
+
 To run most recent version without compiling:
 
-1. download .zip file
+Download .zip file
 
-2. extract .zip file
+Extract .zip file
 
-3. run Bookstore.exe file
+Run Bookstore.exe file
