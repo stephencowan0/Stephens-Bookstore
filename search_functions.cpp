@@ -202,8 +202,32 @@ vector<Book> find_by_length(vector<Book> inventory, int length, char type)
     return Books;
 }
 
-vector<Book> find_by_rating(vector<Book> inventory, float rating, char type)
+vector<Book> find_by_rating(vector<Book> inventory, char type)
 {
+    cout << "Please enter a rating value between 0 and 10: ";
+    float rating;
+    bool valid_rating = false;
+    while (valid_rating == false)
+    {
+        cin >> rating;
+        while (cin.fail())
+        {
+            cout << "That is not a number! Please enter a number between 0 and 10: ";
+            cin.clear();
+            cin.ignore(256, '\n');
+            cin >> rating;
+        }
+        if (rating <= 10 && rating >= 0)
+        {
+            valid_rating = true;
+        }
+        else
+        {
+            cout << "Invalid rating. Please enter a number between 0 and 10: ";
+        }
+    }
+    cin.clear();
+    cin.ignore(256, '\n');
     vector<Book> Books;
     if (type == 'G')
     {
@@ -214,6 +238,10 @@ vector<Book> find_by_rating(vector<Book> inventory, float rating, char type)
                 Books.push_back(inventory[i]);
             }
         }
+        if (Books.size() == 0)
+        {
+            cout << "No books were found with a rating greater than or equal to: " << rating << endl;
+        }
     }
     else if (type == 'L')
     {
@@ -223,6 +251,10 @@ vector<Book> find_by_rating(vector<Book> inventory, float rating, char type)
             {
                 Books.push_back(inventory[i]);
             }
+        }
+        if (Books.size() == 0)
+        {
+            cout << "No books were found with a rating less than or equal to: " << rating << endl;
         }
     }
     else
