@@ -22,8 +22,6 @@ int main()
     cout << "Welcome to Stephen's Bookstore Inventory Management System!" << endl;
     cout << "This is the list of available commands:" << endl;
     cout << "N: Add a new book to the inventory catalog" << endl;
-    cout << "F: Find the book(s) with the lowest quantity in stock" << endl;
-    cout << "M: Find the book(s) with the highest quantity in stock" << endl;
     cout << "T: Find book by title" << endl;
     cout << "A: Find book(s) by author" << endl;
     cout << "I: Find book by ID number" << endl;
@@ -32,7 +30,7 @@ int main()
     cout << "#: Find books by quantity in stock" << endl;
     cout << "S: Update quantity in stock for a book" << endl;
     cout << "!: Update rating for a book" << endl;
-    cout << "~: Save changes made to inventory to file" << endl;
+    cout << "~: Save changes made to inventory" << endl;
     cout << "Q: Quit and close the program" << endl;
 
     while (command != 'Q')
@@ -55,26 +53,6 @@ int main()
                 inventory.push_back(new_book);
                 cout << "Added new book to our inventory with the following information:" << endl;
                 new_book.display_book_information();
-                break;
-            }
-            case 'F':
-            {
-                vector<Book> fewest = lowest_quantity(inventory);
-                cout << "The book(s) with the lowest quantity is:" << endl;
-                for (int i = 0; i < fewest.size(); i++)
-                {
-                    cout << fewest[i].return_title() << " with a rating of " << fewest[i].return_quantity() << endl;
-                }
-                break;
-            }
-            case 'M':
-            {
-                vector<Book> most = highest_quantity(inventory);
-                cout << "The book(s) with the lowest quantity is:" << endl;
-                for (int i = 0; i < most.size(); i++)
-                {
-                    cout << most[i].return_title() << " with a rating of " << most[i].return_quantity() << endl;
-                }
                 break;
             }
             case 'T':
@@ -235,6 +213,64 @@ int main()
                 default:
                 {
                     vector<Book> Books = find_by_rating(inventory, rating_command);
+                    for (int i = 0; i < Books.size(); i++)
+                    {
+                        cout << "Found the following book(s):" << endl;
+                        Books[i].display_book_information();
+                    }
+                }
+                }
+                break;
+            }
+            case '#':
+            {
+                cout << "Welcome to search by quantity. Here are the available commands:" << endl;
+                cout << "H to find the book(s) with the highest quantity. F to find the book(s) with the lowest quantity" << endl;
+                cout << "G for a quantity equal to or greater than. L for a quantity equal to or less than: ";
+
+                bool valid_quantity_command = false;
+                string quantity_input;
+                char quantity_command;
+                while (valid_quantity_command == false)
+                {
+                    getline(cin, quantity_input);
+                    if (quantity_input == "H" || quantity_input == "F" || quantity_input == "G" || quantity_input == "L")
+                    {
+                        valid_quantity_command = true;
+                    }
+                    else
+                    {
+                        cout << "Invalid command!" << endl;
+                        cout << "H to find the book(s) with the highest quantity. F to find the book(s) with the lowest quantity" << endl;
+                        cout << "G for a quantity equal to or greater than. L for a quantity equal to or less than: ";
+                    }
+                }
+                quantity_command = quantity_input[0];
+                switch (quantity_command)
+                {
+                case 'H':
+                {
+                    vector<Book> highest = highest_quantity(inventory);
+                    cout << "The book(s) with the highest quantity is:" << endl;
+                    for (int i = 0; i < highest.size(); i++)
+                    {
+                        cout << highest[i].return_title() << " with a quantity of " << highest[i].return_quantity() << endl;
+                    }
+                    break;
+                }
+                case 'F':
+                {
+                    vector<Book> failures = lowest_quantity(inventory);
+                    cout << "The book(s) with the lowest quantity is:" << endl;
+                    for (int i = 0; i < failures.size(); i++)
+                    {
+                        cout << failures[i].return_title() << " with a quantity of " << failures[i].return_quantity() << endl;
+                    }
+                    break;
+                }
+                default:
+                {
+                    vector<Book> Books = find_by_quantity(inventory, quantity_command);
                     for (int i = 0; i < Books.size(); i++)
                     {
                         cout << "Found the following book(s):" << endl;

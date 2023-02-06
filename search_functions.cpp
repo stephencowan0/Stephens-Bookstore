@@ -325,8 +325,20 @@ vector<Book> find_by_rating(vector<Book> inventory, char type)
     return Books;
 }
 
-vector<Book> find_by_quantity(vector<Book> inventory, int quantity, char type)
+vector<Book> find_by_quantity(vector<Book> inventory, char type)
 {
+    cout << "Please enter a quantity value: ";
+    int quantity;
+    cin >> quantity;
+    while (cin.fail())
+    {
+        cout << "That is not a number! Please enter a number: ";
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> quantity;
+    }
+    cin.clear();
+    cin.ignore(256, '\n');
     vector<Book> Books;
     if (type == 'G')
     {
@@ -337,6 +349,10 @@ vector<Book> find_by_quantity(vector<Book> inventory, int quantity, char type)
                 Books.push_back(inventory[i]);
             }
         }
+        if (Books.size() == 0)
+        {
+            cout << "No books were found with a quantity greater than or equal to: " << quantity << endl;
+        }
     }
     else if (type == 'L')
     {
@@ -346,6 +362,10 @@ vector<Book> find_by_quantity(vector<Book> inventory, int quantity, char type)
             {
                 Books.push_back(inventory[i]);
             }
+        }
+        if (Books.size() == 0)
+        {
+            cout << "No books were found with a quantity less than or equal to: " << quantity << endl;
         }
     }
     else
