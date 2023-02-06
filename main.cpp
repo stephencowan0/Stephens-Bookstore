@@ -27,7 +27,7 @@ int main()
     cout << "T: Find book by title" << endl;
     cout << "A: Find book(s) by author" << endl;
     cout << "I: Find book by ID number" << endl;
-    cout << "P: Find books by length (pages count)" << endl;
+    cout << "L: Find books by length (pages count)" << endl;
     cout << "R: Find books by rating" << endl;
     cout << "#: Find books by quantity in stock" << endl;
     cout << "S: Update quantity in stock for a book" << endl;
@@ -128,54 +128,61 @@ int main()
                 }
                 break;
             }
-            case 'P':
+            case 'L':
             {
-                cout << "Welcome to search by length. Search by length finds all books with a page length either greater than/equal to or less than/equal to the inputted number.";
-                int length;
-                cin >> length;
-                while (cin.fail())
+                cout << "Welcome to search by length. Here are the available commands:" << endl;
+                cout << "H to find the book(s) with the highest length. F to find the book(s) with the lowest length" << endl;
+                cout << "G for a quantity equal to or greater than. L for a quantity equal to or less than: ";
+
+                bool valid_length_command = false;
+                string length_input;
+                char length_command;
+                while (valid_length_command == false)
                 {
-                    cout << "That is not a number! Please enter a number: ";
-                    cin.clear();
-                    cin.ignore(256, '\n');
-                    cin >> length;
-                }
-                cin.clear();
-                cin.ignore(256, '\n');
-                cout << "G for a length equal to or greater than or L for a length equal to or less than: ";
-                string binary_value;
-                bool valid_type = false;
-                while (valid_type == false)
-                {
-                    getline(cin, binary_value);
-                    if (binary_value == "G" || binary_value == "L")
+                    getline(cin, length_input);
+                    if (length_input == "H" || length_input == "F" || length_input == "G" || length_input == "L")
                     {
-                        valid_type = true;
+                        valid_length_command = true;
                     }
                     else
                     {
-                        cout << "Invalid command! G for a length equal to or greater than or L for a length equal to or less than: ";
+                        cout << "Invalid command!" << endl;
+                        cout << "H to find the book(s) with the highest length. F to find the book(s) with the lowest length" << endl;
+                        cout << "G for a quantity equal to or greater than. L for a quantity equal to or less than: ";
                     }
                 }
-                vector<Book> Books = find_by_length(inventory, length, binary_value[0]);
-                if (Books.size() == 0)
+                length_command = length_input[0];
+                switch (length_command)
                 {
-                    if (binary_value == "G")
+                case 'H':
+                {
+                    vector<Book> highest = highest_length(inventory);
+                    cout << "The book(s) with the highest length is:" << endl;
+                    for (int i = 0; i < highest.size(); i++)
                     {
-                        cout << "No books were found with a length greater than or equal to: " << length << endl;
+                        cout << highest[i].return_title() << " with a length of " << highest[i].return_length() << endl;
                     }
-                    else if (binary_value == "L")
-                    {
-                        cout << "No books were found with a length less than or equal to: " << length << endl;
-                    }
+                    break;
                 }
-                else
+                case 'F':
                 {
+                    vector<Book> failures = lowest_length(inventory);
+                    cout << "The book(s) with the lowest length is:" << endl;
+                    for (int i = 0; i < failures.size(); i++)
+                    {
+                        cout << failures[i].return_title() << " with a length of " << failures[i].return_length() << endl;
+                    }
+                    break;
+                }
+                default:
+                {
+                    vector<Book> Books = find_by_length(inventory, length_command);
                     for (int i = 0; i < Books.size(); i++)
                     {
                         cout << "Found the following book(s):" << endl;
                         Books[i].display_book_information();
                     }
+                }
                 }
                 break;
             }

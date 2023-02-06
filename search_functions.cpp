@@ -6,6 +6,47 @@
 #include "functions.hpp"
 using namespace std;
 
+vector<Book> lowest_length(vector<Book> inventory)
+{
+    int lowest = inventory[0].return_length();
+    vector<Book> shortest;
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        if (inventory[i].return_length() < lowest)
+        {
+            lowest = inventory[i].return_length();
+        }
+    }
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        if (inventory[i].return_length() == lowest)
+        {
+            shortest.push_back(inventory[i]);
+        }
+    }
+    return shortest;
+}
+
+vector<Book> highest_length(vector<Book> inventory)
+{
+    int highest = inventory[0].return_length();
+    vector<Book> longest;
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        if (inventory[i].return_length() > highest)
+        {
+            highest = inventory[i].return_length();
+        }
+    }
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        if (inventory[i].return_length() == highest)
+        {
+            longest.push_back(inventory[i]);
+        }
+    }
+    return longest;
+}
 vector<Book> lowest_rating(vector<Book> inventory)
 {
     double lowest = inventory[0].return_rating();
@@ -172,8 +213,20 @@ int find_by_BookID(vector<Book> inventory)
     return -1;
 }
 
-vector<Book> find_by_length(vector<Book> inventory, int length, char type)
+vector<Book> find_by_length(vector<Book> inventory, char type)
 {
+    cout << "Please enter a length value (# of pages): ";
+    int length;
+    cin >> length;
+    while (cin.fail())
+    {
+        cout << "That is not a number! Please enter a number: ";
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> length;
+    }
+    cin.clear();
+    cin.ignore(256, '\n');
     vector<Book> Books;
     if (type == 'G')
     {
@@ -184,6 +237,10 @@ vector<Book> find_by_length(vector<Book> inventory, int length, char type)
                 Books.push_back(inventory[i]);
             }
         }
+        if (Books.size() == 0)
+        {
+            cout << "No books were found with a length greater than or equal to: " << length << endl;
+        }
     }
     else if (type == 'L')
     {
@@ -193,6 +250,10 @@ vector<Book> find_by_length(vector<Book> inventory, int length, char type)
             {
                 Books.push_back(inventory[i]);
             }
+        }
+        if (Books.size() == 0)
+        {
+            cout << "No books were found with a length less than or equal to: " << length << endl;
         }
     }
     else
