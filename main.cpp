@@ -30,6 +30,7 @@ int main()
     cout << "#: Find books by quantity in stock" << endl;
     cout << "S: Update quantity in stock for a book" << endl;
     cout << "!: Update rating for a book" << endl;
+    cout << "D: Delete a book from inventory" << endl;
     cout << "~: Save changes made to inventory" << endl;
     cout << "Q: Quit and close the program" << endl;
 
@@ -301,6 +302,17 @@ int main()
                     cout << "The following book was found: " << endl;
                     inventory[index].display_book_information();
                     inventory[index].update_rating();
+                }
+                break;
+            }
+            case 'D':
+            {
+                cout << "Enter the ID of the book that you would like to delete from inventory: ";
+                int index = find_by_BookID(inventory);
+                if (index != -1)
+                {
+                    inventory.erase(inventory.begin() + index);
+                    cout << "Book successfully deleted from inventory." << endl;
                 }
                 break;
             }
