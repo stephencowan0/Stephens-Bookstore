@@ -6,8 +6,10 @@
 #include "functions.hpp"
 using namespace std;
 
+// Gets user input via the terminal, then creates a Book class object from it
 Book add_book_from_input()
 {
+    // Asks the user for the book's title (No restrictions)
     string title;
     cout << "Title: ";
     getline(cin, title);
@@ -16,7 +18,7 @@ Book add_book_from_input()
         cout << "Title: ";
         getline(cin, title);
     }
-
+    // Asks the user for the book's author (No restrictions)
     string author;
     cout << "Author: ";
     getline(cin, author);
@@ -25,7 +27,7 @@ Book add_book_from_input()
         cout << "Author: ";
         getline(cin, author);
     }
-
+    // Asks the user for the book's ID number (Must be an int)
     int book_id;
     cout << "ID Number: ";
     cin >> book_id;
@@ -38,7 +40,7 @@ Book add_book_from_input()
     }
     cin.clear();
     cin.ignore(256, '\n');
-
+    // Asks the user for the book's page length (Must be an int)
     int length;
     cout << "Number of Pages: ";
     cin >> length;
@@ -51,7 +53,7 @@ Book add_book_from_input()
     }
     cin.clear();
     cin.ignore(256, '\n');
-
+    // Asks the user for the book's rating (Must be a float between 0 and 10)
     float rating;
     bool valid_rating = false;
     while (valid_rating == false)
@@ -76,7 +78,7 @@ Book add_book_from_input()
     }
     cin.clear();
     cin.ignore(256, '\n');
-
+    // Asks the user for the quantity in stock of the book (Must be an int)
     int quantity;
     cout << "Quantity in Stock: ";
     cin >> quantity;
@@ -93,7 +95,7 @@ Book add_book_from_input()
     Book new_book = Book(title, author, book_id, length, rating, quantity);
     return new_book;
 }
-
+// Updates the .csv file by rewriting it with the current inventory vector
 void rewrite_inventory_file(vector<Book> inventory)
 {
     ofstream myfile;

@@ -50,6 +50,7 @@ void Book::display_book_information()
     cout << "Average Rating: " << rating << endl;
     cout << "Quantity In Stock: " << quantity << endl;
 }
+// Takes user input, positive numbers increase quantity and negatives decrease it
 void Book::update_quantity()
 {
     cout << "Enter the quantity of books that you would like to change this books stock by: ";
@@ -67,6 +68,7 @@ void Book::update_quantity()
     quantity = quantity + change;
     cout << title << " now has an in-stock quantity of: " << quantity << endl;
 }
+// Takes user input and updates a book's rating to that number (Must be a float between 0 and 10)
 void Book::update_rating()
 {
     float new_rating;

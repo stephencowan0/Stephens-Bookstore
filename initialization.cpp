@@ -6,6 +6,7 @@
 #include "functions.hpp"
 using namespace std;
 
+// Reads in the .csv file, where each line (book) is a string
 vector<string> read_data()
 {
     ifstream data_file("current_inventory.csv");
@@ -21,7 +22,7 @@ vector<string> read_data()
     data_file.close();
     return rows_of_data;
 }
-
+// Takes in a book's data and transforms it into a Book class object
 Book create_classes(string string_of_data)
 {
     vector<string> class_data;
