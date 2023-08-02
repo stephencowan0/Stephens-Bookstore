@@ -384,7 +384,7 @@ int main()
 
     cout << "Goodbye!" << endl;
     // Does nothing except keep the programming running, so it does not immediately close
-    // Can also be used to testing/debugging purposes
+    // Can also be used for testing/debugging purposes
     string keep_open;
     cin >> keep_open;
     return 0;

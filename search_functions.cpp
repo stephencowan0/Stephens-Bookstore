@@ -152,7 +152,7 @@ vector<Book> find_by_title(vector<Book> inventory, string title)
         // Make all characters lowercase
         transform(current_title.begin(), current_title.end(), current_title.begin(), ::tolower);
 
-        if (current_title == title)
+        if (current_title.find(title) != std::string::npos)
         {
             Books.push_back(inventory[i]);
         }
@@ -181,7 +181,7 @@ vector<Book> find_by_author(vector<Book> inventory, string author)
         // Make all characters lowercase
         transform(current_author.begin(), current_author.end(), current_author.begin(), ::tolower);
 
-        if (current_author == author)
+        if (current_author.find(author) != std::string::npos)
         {
             Books.push_back(inventory[i]);
         }
